@@ -5,7 +5,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor,GradientBoostingRegressor,AdaBoostRegressor
 from xgboost import XGBRegressor
-from catboost import CatBoost
+from catboost import CatBoostRegressor
 from sklearn.metrics import r2_score
 
 from src.exception import CustomException
@@ -37,32 +37,32 @@ class ModelTrainer:
                 'Gradient Boosting Regressor' : GradientBoostingRegressor(),
                 'AdaBoost Regressor' : AdaBoostRegressor(),
                 "XGB Regressor" : XGBRegressor(),
-                'CatBoost' : CatBoost(),
+                'CatBoost' : CatBoostRegressor(verbose=False),
             }
 
             params = {
                 'Linear Regression' : {},
                 'Decision Tree' : {
                     'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
-                    'splitter':['best','random'],
-                    'max_features':['sqrt','log2'],
+                    #'splitter':['best','random'],
+                    #'max_features':['sqrt','log2'],
                 },
                 'Random Forest' : {
-                    'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
-                    'max_features':['sqrt','log2',None],
+                    #'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                    #'max_features':['sqrt','log2',None],
                     'n_estimators': [8,16,32,64,128,256]
                 },
                 'Gradient Boosting' : {
-                    'loss':['squared_error', 'huber', 'absolute_error', 'quantile'],
+                    #'loss':['squared_error', 'huber', 'absolute_error', 'quantile'],
                     'learning_rate':[.1,.01,.05,.001],
                     'subsample':[0.6,0.7,0.75,0.8,0.85,0.9],
-                    'criterion':['squared_error', 'friedman_mse'],
-                    'max_features':['auto','sqrt','log2'],
+                    #'criterion':['squared_error', 'friedman_mse'],
+                    #'max_features':['auto','sqrt','log2'],
                     'n_estimators': [8,16,32,64,128,256]
                 },
                 'AdaBoost' : {
                     'learning_rate':[.1,.01,0.5,.001],
-                    'loss':['linear','square','exponential'],
+                    #'loss':['linear','square','exponential'],
                     'n_estimators': [8,16,32,64,128,256]
                 },
                 'XGB Regressor' : {
